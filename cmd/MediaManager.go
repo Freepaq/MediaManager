@@ -28,6 +28,8 @@ func main() {
 	fmt.Println(MediaUtils.SEPARATOR)
 	nbPhoto := 0
 	nbVideo := 0
+	nbVidePro := 0
+	nbPhotoPro := 0
 	for _, file := range rows {
 
 		meta, err := MediaUtils.GetMeta(file)
@@ -55,13 +57,24 @@ func main() {
 		fmt.Println(MediaUtils.SEPARATOR)
 		if meta.TypeOfMedia == MediaUtils.VIDEO {
 			nbVideo++
+			if meta.Proccessed {
+				nbVidePro++
+			}
 		}
 		if meta.TypeOfMedia == MediaUtils.PHOTO {
 			nbPhoto++
+			if meta.Proccessed {
+				nbPhotoPro++
+			}
 		}
 
 	}
 	fmt.Println("Number of Video : " + strconv.Itoa(nbVideo))
+	fmt.Println("Number of Video copied : " + strconv.Itoa(nbVidePro))
+	fmt.Println(MediaUtils.SEPARATOR)
 	fmt.Println("Number of Photo : " + strconv.Itoa(nbPhoto))
+	fmt.Println("Number of Photo copied : " + strconv.Itoa(nbPhotoPro))
+	fmt.Println(MediaUtils.SEPARATOR)
 	fmt.Println("End Time :" + MediaUtils.CurrentTime)
+
 }
