@@ -1,7 +1,7 @@
 # MediaManager
 ## Purpose
 
-Little utility to sort all Phot and video from a origin folder to a destination folder
+Little utility to sort all Photos and videos from a origin folder to a destination folder
 
 Destination folder will be organised automatically with years and inside all years folders with months
 
