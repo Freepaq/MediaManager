@@ -3,7 +3,9 @@
 
 Little utility to sort all Phot and video from a origin folder to a destination folder
 
-Destination folder will be organised automatically with years and inside all yers folders with months
+Destination folder will be organised automatically with years and inside all years folders with months
+
+Origin folder will be scanned and also the sub-folders
 
 ## Usage
 
