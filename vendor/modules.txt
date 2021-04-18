@@ -1,0 +1,23 @@
+# github.com/Freepaq/MediaManagement v0.0.0-20210418101000-86494cccf585
+## explicit
+github.com/Freepaq/MediaManagement/pkg/MediaUtils
+# github.com/dsoprea/go-exif/v3 v3.0.0-20210131231135-d154f10435cc
+github.com/dsoprea/go-exif/v3
+github.com/dsoprea/go-exif/v3/common
+github.com/dsoprea/go-exif/v3/undefined
+# github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd
+github.com/dsoprea/go-logging
+# github.com/dsoprea/go-utility/v2 v2.0.0-20200717064901-2fccff4aa15e
+github.com/dsoprea/go-utility/v2/filesystem
+# github.com/go-errors/errors v1.1.1
+github.com/go-errors/errors
+# github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
+github.com/golang/geo/r1
+github.com/golang/geo/r2
+github.com/golang/geo/r3
+github.com/golang/geo/s1
+github.com/golang/geo/s2
+# golang.org/x/net v0.0.0-20210415231046-e915ea6b2b7d
+golang.org/x/net/context
+# gopkg.in/yaml.v2 v2.4.0
+gopkg.in/yaml.v2
