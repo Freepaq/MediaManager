@@ -25,6 +25,8 @@ func main() {
 	rows := MediaUtils.GetListOfFile(origin, mediaType)
 	fmt.Println("Actions requested : " + strings.Join(actions, " - "))
 	fmt.Println("Media Type : " + mediaType)
+	fmt.Println("Eligible Photo Type : " + strings.Join(MediaUtils.EligiblePhotoFile, " "))
+	fmt.Println("Eligible Video Type : " + strings.Join(MediaUtils.EligibleVideoFile, " "))
 	total := len(rows)
 	proc := 1
 	fmt.Print(MediaUtils.SEPARATOR)

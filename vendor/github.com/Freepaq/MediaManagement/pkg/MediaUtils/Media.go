@@ -96,7 +96,7 @@ func Copy(ori *FileStruct, destFoler string, force bool) bool {
 			fmt.Println("Destination file : [" + destFull + "] exists, not overrided")
 			(*ori).Proccessed = false
 		}
-		(*ori).Proccessed = true
+		//(*ori).Proccessed = true
 	} else {
 		oriFile, err := ioutil.ReadFile((*ori).FullName)
 		if nil != err {
