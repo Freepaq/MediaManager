@@ -25,13 +25,17 @@ func main() {
 	rows := MediaUtils.GetListOfFile(origin, mediaType)
 	fmt.Println("Actions requested : " + strings.Join(actions, " - "))
 	fmt.Println("Media Type : " + mediaType)
-	fmt.Println(MediaUtils.SEPARATOR)
+	total := len(rows)
+	proc := 1
+	fmt.Print(MediaUtils.SEPARATOR)
 	nbPhoto := 0
 	nbVideo := 0
 	nbVidePro := 0
 	nbPhotoPro := 0
-	for _, file := range rows {
 
+	for _, file := range rows {
+		fmt.Println(" " + strconv.Itoa(proc) + "/" + strconv.Itoa(total))
+		proc++
 		meta, err := MediaUtils.GetMeta(file)
 		if err != nil {
 			fmt.Println(err)
@@ -54,7 +58,7 @@ func main() {
 				MediaUtils.Delete(meta)
 			}
 		}
-		fmt.Println(MediaUtils.SEPARATOR)
+		fmt.Print(MediaUtils.SEPARATOR)
 		if meta.TypeOfMedia == MediaUtils.VIDEO {
 			nbVideo++
 			if meta.Proccessed {
@@ -69,6 +73,7 @@ func main() {
 		}
 
 	}
+	fmt.Println("")
 	fmt.Println("Number of Video : " + strconv.Itoa(nbVideo))
 	fmt.Println("Number of Video copied : " + strconv.Itoa(nbVidePro))
 	fmt.Println(MediaUtils.SEPARATOR)
