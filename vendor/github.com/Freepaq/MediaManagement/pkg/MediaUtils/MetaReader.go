@@ -102,12 +102,14 @@ func checkValue(v interface{}, value []string, key string) (string, string, bool
 }
 
 func ReadPhotoMeta(fname string, fileStr *FileStruct) {
-	x, err := extractTag(fname, "DateTime")
+	tag := "DateTime"
+	x, err := extractTag(fname, tag)
 	if err != nil {
 		readFromFile(fname, fileStr)
 	} else {
 		fileStr.CreationDate, _ = time.Parse("2006:01:02 15:04:05", x)
 		fileStr.MetaOrigin = METAORIGINMETA
+		fileStr.FromMeta = tag
 	}
 }
 
