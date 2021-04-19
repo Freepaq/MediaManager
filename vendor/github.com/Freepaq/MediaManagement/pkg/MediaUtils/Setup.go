@@ -34,6 +34,7 @@ type FileStruct struct {
 	DestinationDir string
 	TypeOfMedia    string
 	Proccessed     bool
+	FromMeta       string
 }
 
 func IsPhotoEligible(ext string) bool {

@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/Freepaq/MediaManagement/pkg/MediaUtils"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/Freepaq/MediaManagement/pkg/MediaUtils"
 )
 
 var actions []string
@@ -42,7 +43,7 @@ func main() {
 			fmt.Println(err)
 		} else {
 			fmt.Println("Source file : [" + file + "]")
-			fmt.Println("Creation : [" + meta.CreationDate.String() + "] taken from " + meta.MetaOrigin)
+			fmt.Println("Creation : [" + meta.CreationDate.String() + "] taken from " + meta.MetaOrigin + " [" + meta.FromMeta + "]")
 
 		}
 		if MediaUtils.Contains(actions, "RENAME") {
