@@ -20,8 +20,13 @@ func ReadVideoMeta(fname string, fileStr *FileStruct) error {
 	cmd := exec.Command("mediainfo/MediaInfo.exe", "--Output=JSON", "--Logfile=text.txt", fname)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		fmt.Println("Error reading METADATA :" + fmt.Sprint(err) + ": " + string(output))
-		return err
+		d, _ := os.Getwd()
+		fmt.Println("Error reading METADATA :" + fmt.Sprint(err) + ": " + string(output) + " " + d)
+		cmd := exec.Command("../bin/mediainfo/MediaInfo.exe", "--Output=JSON", "--Logfile=text.txt", fname)
+		output, err = cmd.CombinedOutput()
+		if err != nil {
+			return err
+		}
 	}
 	var encodeDate string
 	resultingMap := MyMapping{}
@@ -33,7 +38,10 @@ func ReadVideoMeta(fname string, fileStr *FileStruct) error {
 			return serr
 		}
 	} else {
-		encodeDate = search(resultingMap, []string{"DateTime", "Encoded_Date", "File_Created_Date"})
+		encodeDate = search(resultingMap, []string{"DateTime", "Encoded_Date"})
+	}
+	if encodeDate == "" {
+		encodeDate = search(resultingMap, []string{"File_Created_Date"})
 	}
 	if encodeDate == "" {
 		readFromFile(fname, fileStr)
@@ -56,24 +64,39 @@ func search(str MyMapping, value []string) string {
 	media = str["media"].(map[string]interface{})
 	//	fmt.Println(reflect.TypeOf(media))
 	if nil != media {
-		var track []interface{}
-		track = media["track"].([]interface{})
-		if nil != track {
+
+		if track, ok := media["track"].([]interface{}); ok {
 			for _, m := range track {
 				for key, v := range m.(map[string]interface{}) {
-					if Contains(value, key) {
-
-						var date = v.(string)
-						if date != "" {
-							dateArray := strings.Split(date, " ")
-							return dateArray[1] + "T" + dateArray[2]
-						}
+					if res, ok := checkValue(v, value, key); ok {
+						return res
 					}
 				}
 			}
 		}
+		if video, ok := media["Video"].([]interface{}); ok {
+			for _, m := range video {
+				for key, v := range m.(map[string]interface{}) {
+					if res, ok := checkValue(v, value, key); ok {
+						return res
+					}
+				}
+			}
+
+		}
 	}
 	return result
+}
+
+func checkValue(v interface{}, value []string, key string) (string, bool) {
+	if Contains(value, key) {
+		var date = v.(string)
+		if date != "" {
+			dateArray := strings.Split(date, " ")
+			return dateArray[1] + "T" + dateArray[2], true
+		}
+	}
+	return "", false
 }
 
 func ReadPhotoMeta(fname string, fileStr *FileStruct) {

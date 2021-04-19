@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/Freepaq/MediaManagement/pkg/MediaUtils"
 	"os"
 	"strconv"
 	"strings"
-
-	"github.com/Freepaq/MediaManagement/pkg/MediaUtils"
 )
 
 var actions []string
