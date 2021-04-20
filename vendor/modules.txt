@@ -2,10 +2,12 @@
 ## explicit
 github.com/Freepaq/MediaManagement/pkg/MediaUtils
 # github.com/dsoprea/go-exif/v3 v3.0.0-20210131231135-d154f10435cc
+## explicit
 github.com/dsoprea/go-exif/v3
 github.com/dsoprea/go-exif/v3/common
 github.com/dsoprea/go-exif/v3/undefined
 # github.com/dsoprea/go-logging v0.0.0-20200710184922-b02d349568dd
+## explicit
 github.com/dsoprea/go-logging
 # github.com/dsoprea/go-utility/v2 v2.0.0-20200717064901-2fccff4aa15e
 github.com/dsoprea/go-utility/v2/filesystem
