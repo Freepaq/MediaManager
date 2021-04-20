@@ -1,4 +1,4 @@
-# MediaManager
+# MediaManager [![Build Status](https://travis-ci.org/Freepaq/MediaManager.svg?branch=main)](https://travis-ci.org/Freepaq/MediaManager)
 ## Purpose
 
 Little utility to sort all Photos and videos from a origin folder to a destination folder.
