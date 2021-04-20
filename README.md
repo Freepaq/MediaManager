@@ -9,6 +9,10 @@ Origin folder will be scanned and also the sub-folders.
 
 Media infos are taken from the meta data if exists otherwise the info are taken from the file attributes.
 
+## Installation
+
+Copy all files fron Bin folder to your Windows Machine
+
 ## Usage
 
 MediaManager.exe TypeMedia ListOfAction originFolder DestFolder
