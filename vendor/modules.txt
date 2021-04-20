@@ -1,4 +1,4 @@
-# github.com/Freepaq/MediaManagement v1.1.0
+# github.com/Freepaq/MediaManagement v1.1.1
 ## explicit
 github.com/Freepaq/MediaManagement/pkg/MediaUtils
 # github.com/dsoprea/go-exif/v3 v3.0.0-20210131231135-d154f10435cc

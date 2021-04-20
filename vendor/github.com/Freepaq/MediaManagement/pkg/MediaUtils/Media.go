@@ -37,6 +37,10 @@ func fileStruct(files *[]string, origin string, eligibleFiles string) filepath.W
 		return nil
 	}
 }
+
+/*
+Get a list of of media files including sub-folders search
+*/
 func GetListOfFile(folder string, eligibleFiles string) []string {
 	var files []string
 	err := filepath.Walk(folder, fileStruct(&files, folder, eligibleFiles))
@@ -47,6 +51,9 @@ func GetListOfFile(folder string, eligibleFiles string) []string {
 	return files
 }
 
+/*
+Delete physically the file given as parameters (fullpath)
+*/
 func Delete(file FileStruct) {
 	err := os.Remove(file.FullName)
 	if err != nil {
@@ -56,6 +63,10 @@ func Delete(file FileStruct) {
 	}
 }
 
+/*
+Rename physically the file given as parameters (fullpath)
+Rename is based on the Creation date set on FileStruct return by func GetMeta
+*/
 func Rename(file *FileStruct) {
 	var n = (*file).CreationDate.Format(TimestampFormat)
 	(*file).NewName = n + (*file).Extension
@@ -63,6 +74,11 @@ func Rename(file *FileStruct) {
 	fmt.Println("New name : [" + (*file).NewName + "]")
 }
 
+/*
+Copy physically the file from origin folder to destfolder.
+In Dest folder, a sub folder corresponding to the year of media is created if not exists
+In Dest year folder, a sub folder corresponding to the month of media is created if not exists
+*/
 func Copy(ori *FileStruct, destFoler string, force bool) bool {
 	year, month, _ := (*ori).CreationDate.Date()
 	dest := filepath.Join(destFoler, strconv.Itoa(year))
@@ -130,6 +146,10 @@ func writeFile(destFull string, input []byte) (error, bool) {
 	return err, true
 }
 
+/*
+function to get the meta date of the media
+Return a FileStruct
+*/
 func GetMeta(fname string) (FileStruct, error) {
 	fileStr := FileStruct{}
 
