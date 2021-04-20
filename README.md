@@ -1,4 +1,4 @@
-# MediaManager
+# MediaManager [![Build Status](https://travis-ci.org/Freepaq/MediaManager.svg?branch=main)](https://travis-ci.org/Freepaq/MediaManager)
 ## Purpose
 
 Little utility to sort all Photos and videos from a origin folder to a destination folder.
@@ -8,6 +8,10 @@ Destination folder will be organised automatically with years and inside all yea
 Origin folder will be scanned and also the sub-folders.
 
 Media infos are taken from the meta data if exists otherwise the info are taken from the file attributes.
+
+## Installation
+
+Copy all files fron Bin folder to your Windows Machine
 
 ## Usage
 
