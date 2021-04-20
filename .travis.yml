@@ -1,0 +1,17 @@
+language: go
+
+go:
+- 1.16.3
+- master
+stages:
+  - lint
+
+jobs:
+  include:
+    - stage: lint
+      script:
+        - go mod vendor
+        - go get -u golang.org/x/lint/golint
+        - go mod vendor
+        - golint -set_exit_status
+        - go vet -v cmd/MediaManager.go
