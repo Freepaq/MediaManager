@@ -16,17 +16,11 @@ import (
 type MyMapping map[string]interface{}
 
 func ReadVideoMeta(fname string, fileStr *FileStruct) error {
-	//fmt.Println("Current file :" + fname)
-	cmd := exec.Command("mediainfo/MediaInfo.exe", "--Output=JSON", "--Logfile=text.txt", fname)
+	h, _ := os.Getwd()
+	cmd := exec.Command(h+"/mediainfo/MediaInfo.exe", "--Output=JSON", "--Logfile=text.txt", fname)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
-		d, _ := os.Getwd()
-		fmt.Println("Error reading METADATA :" + fmt.Sprint(err) + ": " + string(output) + " " + d)
-		cmd := exec.Command("../bin/mediainfo/MediaInfo.exe", "--Output=JSON", "--Logfile=text.txt", fname)
-		output, err = cmd.CombinedOutput()
-		if err != nil {
-			return err
-		}
+		return err
 	}
 	var encodeDate string
 	resultingMap := MyMapping{}
