@@ -118,16 +118,36 @@ func Copy(ori *FileStruct, destFoler string, force bool) bool {
 		if nil != err {
 			fmt.Println("Error reading  origin file :" + (*ori).FullName + " ")
 		}
-		destFile, err := ioutil.ReadFile(destFull)
-		if nil != err {
-			fmt.Println("Error reading destination file :" + destFull + " ")
-		}
-		if len(oriFile) == len(destFile) {
+		if _, err := os.Stat(destFull); os.IsNotExist(err) {
 			if err, result = writeFile(destFull, input); err != nil {
 				fmt.Println(err)
 				(*ori).Proccessed = false
+
+			} else {
+				(*ori).Proccessed = true
 			}
-			(*ori).Proccessed = true
+
+		} else {
+			destFile, err := ioutil.ReadFile(destFull)
+			if nil != err {
+				fmt.Println("Error reading destination file :" + destFull + " ")
+				(*ori).Proccessed = false
+			} else {
+				if len(oriFile) != len(destFile) && (*ori).NewFullName == destFull {
+					destFull = destFull + "(1)"
+					if err, result = writeFile(destFull, input); err != nil {
+						fmt.Println(err)
+						(*ori).Proccessed = false
+					} else {
+						(*ori).Proccessed = true
+						fmt.Println("New File created as destination file exists with other size")
+						fmt.Println(destFull)
+					}
+				} else {
+					fmt.Println("Destination already exists with same size and name, no copy")
+					(*ori).Proccessed = true
+				}
+			}
 		}
 		//TODO if force == true and dest file same origin file
 	}
@@ -157,8 +177,10 @@ func GetMeta(fname string) (FileStruct, error) {
 	fileStr.NewFullName = fname
 
 	if IsVideoEligible(filepath.Ext(fname)) {
-		_ = ReadVideoMeta(fname, &fileStr)
 		fileStr.TypeOfMedia = VIDEO
+		if err := ReadVideoMeta(fname, &fileStr); err != nil {
+			return fileStr, err
+		}
 	}
 	if IsPhotoEligible(filepath.Ext(fname)) {
 		ReadPhotoMeta(fname, &fileStr)
