@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 func fileStruct(files *[]string, origin string, eligibleFiles string) filepath.WalkFunc {
@@ -129,19 +130,19 @@ func Copy(ori *FileStruct, destFoler string, force bool) bool {
 
 		} else {
 			destFile, err := ioutil.ReadFile(destFull)
+			index := 1
 			if nil != err {
 				fmt.Println("Error reading destination file :" + destFull + " ")
 				(*ori).Proccessed = false
 			} else {
 				if len(oriFile) != len(destFile) && (*ori).NewFullName == destFull {
-					destFull = destFull + "(1)"
-					if err, result = writeFile(destFull, input); err != nil {
+					if err, result = writeFileLooping(destFull, input, index, ori); err != nil {
 						fmt.Println(err)
 						(*ori).Proccessed = false
 					} else {
 						(*ori).Proccessed = true
 						fmt.Println("New File created as destination file exists with other size")
-						fmt.Println(destFull)
+						fmt.Println((*ori).NewFullName)
 					}
 				} else {
 					fmt.Println("Destination already exists with same size and name, no copy")
@@ -149,10 +150,25 @@ func Copy(ori *FileStruct, destFoler string, force bool) bool {
 				}
 			}
 		}
-		//TODO if force == true and dest file same origin file
 	}
 	input = nil
 	return result
+}
+
+func writeFileLooping(destFull string, input []byte, index int, f *FileStruct) (error, bool) {
+	s := strings.Split(destFull, ".")
+	s[0] = s[0] + "(" + strconv.Itoa(index) + ")"
+	f.NewFullName = s[0] + "." + s[1]
+	if err, b := writeFile(f.NewFullName, input); !b {
+		if index > 15 {
+			return err, false
+		}
+		index++
+		if err, b = writeFileLooping(destFull, input, index, f); !b {
+			return err, b
+		}
+	}
+	return nil, true
 }
 
 func writeFile(destFull string, input []byte) (error, bool) {
@@ -160,16 +176,17 @@ func writeFile(destFull string, input []byte) (error, bool) {
 	if err != nil {
 		fmt.Println("Error creating", destFull)
 		fmt.Println(err)
-		return nil, false
+		return err, false
 	}
 	fmt.Println("Destination file : [" + destFull + "] copied")
-	return err, true
+	return nil, true
 }
 
 /*
 function to get the meta date of the media
 Return a FileStruct
 */
+
 func GetMeta(fname string) (FileStruct, error) {
 	fileStr := FileStruct{}
 

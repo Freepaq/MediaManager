@@ -10,6 +10,10 @@ github.com/Freepaq/MediaManagement v1.1.2 h1:IFXjRbU2344oYyO/R+06YQYT95uk9AI0E66
 github.com/Freepaq/MediaManagement v1.1.2/go.mod h1:fPACNBteqqXa1InWYDrF4wuMl0+MQ4O2nMTwbhFpDLg=
 github.com/Freepaq/MediaManagement v1.1.3 h1:OS8USh+jnuBDOBfZCxFNFEKZ0w3km+iU1hVEr5JshjM=
 github.com/Freepaq/MediaManagement v1.1.3/go.mod h1:fPACNBteqqXa1InWYDrF4wuMl0+MQ4O2nMTwbhFpDLg=
+github.com/Freepaq/MediaManagement v1.1.4 h1:ddBGUOkvVvslPku44X/J32aqlVQYNoh7M3ta7iPEuKY=
+github.com/Freepaq/MediaManagement v1.1.4/go.mod h1:fPACNBteqqXa1InWYDrF4wuMl0+MQ4O2nMTwbhFpDLg=
+github.com/Freepaq/MediaManagement v1.2.0 h1:qPhgStUZU3yb6tm0m/DDc4gupPY4yHS5tpdOnijty7c=
+github.com/Freepaq/MediaManagement v1.2.0/go.mod h1:fPACNBteqqXa1InWYDrF4wuMl0+MQ4O2nMTwbhFpDLg=
 github.com/dsoprea/go-exif/v2 v2.0.0-20200321225314-640175a69fe4/go.mod h1:Lm2lMM2zx8p4a34ZemkaUV95AnMl4ZvLbCUbwOvLC2E=
 github.com/dsoprea/go-exif/v3 v3.0.0-20200717053412-08f1b6708903/go.mod h1:0nsO1ce0mh5czxGeLo4+OCZ/C6Eo6ZlMWsz7rH/Gxv8=
 github.com/dsoprea/go-exif/v3 v3.0.0-20210131231135-d154f10435cc h1:WlJC9DefVe1OZKM04jD7jInkZ9Oyou+K6cpYOVPXq0o=
